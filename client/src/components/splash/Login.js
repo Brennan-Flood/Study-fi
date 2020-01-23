@@ -10,7 +10,8 @@ class Login extends Component {
 
     this.state = {
       email: "",
-      password: ""
+      password: "",
+      errors: null
     };
 
     this.demoUser = this.demoUser.bind(this);
@@ -38,10 +39,34 @@ class Login extends Component {
     });
   };
 
+  componentWillUnmount(){
+    clearTimeout(this.timer);
+  }
+
   handleErrors(errors) {
-    console.log(errors.message);
-    this.setState({errors: errors.message, wasError: true});
+    this.timer = setTimeout(() => {
+      const authModal = document.getElementById("auth-div");
+      authModal.classList.add("error");
+    },1);
+    const splitErr = errors.message.split(":");
+    this.setState({ errors: splitErr[1] });
   };
+
+  emailStyle() {
+    if (this.state.errors && (this.state.errors.includes("Email") || this.state.errors.includes("email"))) {
+      return { "border": "1px solid red" }
+    } else {
+      return {}
+    }
+  };
+
+  passwordStyle() {
+    if (this.state.errors && (this.state.errors.includes("Password") || this.state.errors.includes("password"))) {
+      return { "border": "1px solid red" }
+    } else {
+      return {}
+    }
+  }
 
   render() {
     return (
@@ -58,11 +83,12 @@ class Login extends Component {
         update={(client, data) => this.updateCache(client, data)}
       >
         {loginUser => {
-          return <div className="auth-div">
+          return <div className="auth-div" id="auth-div">
             <h1 className="auth-header">
               Login!
             </h1>
-            <ul className="error-List">
+            <ul className="errors-ul">
+              {this.state.errors}
             </ul>
             <form
               className="auth-form"
@@ -81,6 +107,7 @@ class Login extends Component {
                 value={this.state.email}
                 onChange={this.update("email")}
                 placeholder="Email"
+                style={this.emailStyle()}
               />
               <input
                 className="auth-input"
@@ -88,6 +115,7 @@ class Login extends Component {
                 onChange={this.update("password")}
                 type="password"
                 placeholder="Password"
+                style={this.passwordStyle()}
               />
               <button
                 className="auth-button"
@@ -104,6 +132,8 @@ class Login extends Component {
             <div className="auth-switch">
               <p className="auth-link" onClick={(e) => this.demoUser(e, loginUser)}>Use Demo User</p>
             </div>
+
+            
           </div>
         }}
       </Mutation>

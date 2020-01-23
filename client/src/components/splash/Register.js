@@ -12,7 +12,8 @@ class Register extends Component {
     this.state = {
       email: "",
       name: "",
-      password: ""
+      password: "",
+      errors: null
     };
   }
 
@@ -42,6 +43,42 @@ class Register extends Component {
     });
   }
 
+  componentWillUnmount() {
+    clearTimeout(this.timer);
+  }
+
+  handleErrors(errors) {
+    this.timer = setTimeout(() => {
+      const authModal = document.getElementById("auth-div");
+      authModal.classList.add("error");
+    }, 1);
+    const splitErr = errors.message.split(":");
+    this.setState({ errors: splitErr[1] });
+  };
+
+  emailStyle() {
+    if (this.state.errors && this.state.errors.includes("Email")) {
+      return {"border": "1px solid red"}
+    } else {
+      return {}
+    }
+  };
+
+  passwordStyle() {
+    if (this.state.errors && (this.state.errors.includes("Password") || this.state.errors.includes("password"))) {
+      return { "border": "1px solid red" }
+    } else {
+      return {}
+    }
+  }
+
+  nameStyle() {
+    if (this.state.errors && (this.state.errors.includes("Name"))) {
+      return {"border": "1px solid red"};
+    } else {
+      return {};
+    }
+  }
   render() {
     return (
       <Mutation
@@ -51,11 +88,17 @@ class Register extends Component {
           localStorage.setItem("auth-token", token);
           this.props.history.push("/");
         }}
+        onError={errors => {
+          this.handleErrors(errors);
+        }}
         update={(client, data) => this.updateCache(client, data)}
       >
         {registerUser => (
-          <div className="auth-div">
-            <h1 className="auth-header">Register!</h1>
+          <div className="auth-div" id="auth-div">
+            <h1 className="auth-header">Sign Up!</h1>
+            <ul className="errors-ul">
+              {this.state.errors}
+            </ul>
             <form
               className="auth-form"
               onSubmit={e => {
@@ -74,12 +117,14 @@ class Register extends Component {
                 value={this.state.email}
                 onChange={this.update("email")}
                 placeholder="Email"
+                style={this.emailStyle()}
               />
               <input
                 className="auth-input"
                 value={this.state.name}
                 onChange={this.update("name")}
                 placeholder="Name"
+                style={this.nameStyle()}
               />
               <input
                 className="auth-input"
@@ -87,6 +132,7 @@ class Register extends Component {
                 onChange={this.update("password")}
                 type="password"
                 placeholder="Password"
+                style={this.passwordStyle()}
               />
               <button className="auth-button" type="submit">
                 Sign Up
@@ -121,6 +167,8 @@ class Register extends Component {
                 </Mutation>
               </div>
             </form>
+
+            
           </div>
         )}
       </Mutation>

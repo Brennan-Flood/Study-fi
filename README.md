@@ -1,106 +1,62 @@
 # Study-fi
+[Study-fi Live Link](https://study-fi.herokuapp.com/)
+## Technologies Used: ##
+- GraphQL
+- Apollo Client
+- Mongo DB for storing user information
+- Express.js
+- React.js
+- Node.js
+- JavaScript
+- HTML5
+- CSS3
+- Web Speech API for voice-to-text search
+- Loader API for transition effects
+- AWS S3 buckets for MP3 and image files storage
 
-## Members:
 
-Brennan Flood, Pavel Aparcana
-
-
-## App Clone:
-Study-fi
--clone of spotify
--our twist: Library filled with study lo-fi beats
--bonus: integrate a live chat per playlist that deletes in 24h.
-
-
-## Live Site
- [Study-fi](https://study-fi.herokuapp.com/)
+### Challenges: ###
+- Creation of a working Queue.
+- Continuous play of music when navigating pages.
+- Utilizing Voice to Text API.
 
 
 ## Overview:
-Study-fi is an app that is targeted towards students or professionals wanting to listen to calm beats to improve their focus and productivity. We will accomplish this by using the spotify api to get songs, albums, and album covers from their library.
+Based off ***Spotify***, *Study-fi* is an app that is targeted towards students and/or professionals aiming to improve their focus and productivity. With a library filled with lo-fi music, user will be allowed to:
+
+- Listen to music continuously while browsing through the application.
+- Play music instantly.
+- Like/Unlike songs.
+- Create/Delete playlists.
+- Search for songs, artists, and albums.
+- View the Queue songs.
+- Add to Queue(***bonus***).
 
 
-## Functionality:
-Features included in our study-fi version are based on the original spotify features where users are able to listen to lo-fi music, create playlists, like songs, queue(bonus) songs and search songs.
+## Wireframes:
+![Splash-page](https://github.com/aparcanapavel/Study-fi/blob/master/readmeImgs/splash.png?raw=true)
+- Upon visiting Study-fi, users are welcomed with a spash page.
+- Users can Sign Up/Log In.
+- Users can click *Learn more* to read more about the application.
 
+![Home-Screen](https://github.com/aparcanapavel/Study-fi/blob/master/readmeImgs/home_screen.png?raw=true)
 
-### MVP:
+- After successfully signing up or logging in, users are then taken to the home page, where they have access to the full library.
+- Users can go to the search page, their library of liked songs, create a playlist, and view their playlists.
 
-#### Day 1
-- User-Authentication backend - Brennan and Pavel
-- User-Authentication frontend:
-  - Add Apollo and write Auth queries for frontend - Brennan and Pavel
-  - User-Registration component and functionality - Pavel
-  - Nav component with Logout functionality - Brennan
-  - Login frontend functionality - Pavel
-  - Protected-Routes - Pavel
-  - Auth-Routes - Brennan
-- Implement skeletal frontend structure - Brennan and Pavel
+![Search-Screen](https://github.com/aparcanapavel/Study-fi/blob/master/readmeImgs/search_screen.png?raw=true)
+- On the search page, users are able to search for Songs, Artists and Albums.
 
-#### Day 2 
-- App styling - Brennan and Pavel
-- Explore APIs to use with Studify - Brennan and Pavel
-- Implement backend functionality: 
-  - Create Songs - Brennan and Pavel
-  - Create Albums - Brennan
-  - Create Artists - Pavel
-- Implement basic frontend components for Home Page: 
-  - Artist Index component - Brennan
-  - Album Index component - Pavel
-- Style Main Page - Pavel
-- Add basic HTML audio player for testing - Brennan
+![Create-playlist1](https://github.com/aparcanapavel/Study-fi/blob/master/readmeImgs/create_playlist_modal.png?raw=true)
+- My Favorite feature I had to implement was creating a playlist.
+- After clicking on "*Create Playlist*", users are prompted a modal where they can begin creating the playlist name.
 
-#### Day 3
-- Styling - Brennan and Pavel
-- Seed Database with Song, Artist and Album Objects - Brennan and Pavel
-- Write backend Mutations for adding Artist, Song and Album Associations - Brennan and Pavel
-- Add Query associations between Artists, Albums and Songs - Brennan and Pavel
-- Frontend skeletal structuring for Artist/Album Show, and Search - Brennan and Pavel
+  ![create-playlist2](https://github.com/aparcanapavel/Study-fi/blob/master/readmeImgs/create_playlist_modal_2.png?raw=true)
+  - Users then are prompted with another screen to begin searching our library.
+  - Users also have the chance to skip this step.
 
+  ![create-playlist3](https://github.com/aparcanapavel/Study-fi/blob/master/readmeImgs/create_playlist_modal_3.png?raw=true)
+  - Users can search for songs and albums to add to their playlist.
 
-#### Day 4
-- Styling - Brennan and Pavel
-- Implement custom Music Player with styling: 
-  - Functional Progress Bar - Pavel
-  - Functional Queue - Pavel
-  - Functional Volume Slider - Pavel
-  - Functional Misc Audio Controls - Pavel
-  - Functional Song info display - Pavel
-  - Implement continous music playing regardless of page location - Pavel
-- Work on backend and backend Playlist CRUD - Brennan
-- Implement Song Options Modal - Brennan
-- Make Song to Playlist addition universal - Brennan
-- Implement Webspeech API for Voice to Text translation - Brennan
-- Implement Search for Songs, Artists and Albums - Pavel
-- Utilize Webspeeech API for voice-based-search - Brennan
-- Update Playlist creation Modal - Pavel
-
- #### Day 5
-- Implement Loader API for transition effects - Pavel
-- Implement Add Image to Artist and Album backend functionality - Brennan
-- Seed Database with Images - Brennan and Pavel
-- Implement Add Album to Queue functionality - Pavel
-- Implement Song Liking backend and frontend functionality - Pavel
-- Implement Show page for Liked Songs - Brennan
-- Implement Library Show page - Brennan
-- Debugging - Brennan and Pavel
-- Heroku Hosting - Brennan
-- Finish Styling - Brennan and Pavel
- 
-
-## Technologies Used:
-- Mongo DB for storing user information
-- Express
-- GraphQL
-- Apollo
-- Node
-- React
-- Web Speech API for voice-to-text search
-- Loader API for transition effects
-- AWS S3 buckets for mp3 and image storage
-
-
-## Challenges:
-- Creation of a working Queue
-- Continuous play of music when navigating pages
-- Utilizing Voice to Text API 
+![playlist-show](https://github.com/aparcanapavel/Study-fi/blob/master/readmeImgs/playlist_show.png?raw=true)
+- Users can visit any of their created playlists anytime.
